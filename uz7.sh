@@ -34,7 +34,7 @@ while IFS= read -r -d '' file; do
   mkdir -p "$output_dir"
 
   # Take action on each file. $file stores the current file name
-  zpaq a "$output_dir/$INT.zpaq" "$file" &> /dev/null
+  zpaq a "$output_dir/$INT.zpaq" "$file" -m9 -t1 &> /dev/null
 done < <(find "$1" -type f -print0)
 
 7z a -mmt4 -mx9 -m0=lzma2:a0 -ssw "$2" "$TEMPDIR"
