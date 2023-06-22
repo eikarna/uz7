@@ -37,7 +37,7 @@ while IFS= read -r -d '' file; do
   zpaq a "$output_dir/$INT.zpaq" "$file" &> /dev/null
 done < <(find "$1" -type f -print0)
 
-7z a -mmt4 -mx9 -m0=lzma2:a0 -ssw "$1" "$TEMPDIR"
+7z a -mmt4 -mx9 -m0=lzma2:a0 -ssw "$2" "$TEMPDIR"
 
 #Remove TempDir
 rm -rf "$TEMPDIR"
