@@ -27,17 +27,25 @@ while IFS= read -r -d '' file; do
   INT=$(( INT + 1 ))
   echo "Processing $file file..."
   # Determine the relative path of the file
-  rel_path="${file#$1/}"
+  rel_path="${file%/*}"
 
-  # Create the output directory structure
-  output_dir="$TEMPDIR/$(dirname "$rel_path")"
-  mkdir -p "$output_dir"
+  bn=`basename "$rel_path"`
 
+  parp=`basename "$1"`
+  chip=`basename "$(dirname "$file")"`
+
+  if [ "$parp" != "$chip" ]; then
+      output_dir="$TEMPDIR/$bn"
+      # echo "OutputDir: $output_dir"
+      mkdir -p "$output_dir"
+  else
+      output_dir="$TEMPDIR"
+  fi
   # Take action on each file. $file stores the current file name
-  zpaq a "$output_dir/$INT.zpaq" "$file" -m9 -t1 &> /dev/null
+  zpaq a "$output_dir/$INT.zpaq" "$file" -f -m5 -t8 &> /dev/null
 done < <(find "$1" -type f -print0)
 
-7z a -mmt4 -mx9 -m0=lzma2:a0 -ssw "$2" "$TEMPDIR"
+7z a -mmt4 -mx9 "$2" "$TEMPDIR"
 
 #Remove TempDir
 rm -rf "$TEMPDIR"
