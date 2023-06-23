@@ -12,8 +12,8 @@ if ! command -v zpaq &> /dev/null; then
   exit 1
 fi
 
-# Check if tar is installed
-if ! command -v tar &> /dev/null; then
+# Check if 7z is installed
+if ! command -v 7z &> /dev/null; then
   echo "tar command not found. Please make sure tar is installed and added to the system's binary directories."
   exit 1
 fi
