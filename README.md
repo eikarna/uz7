@@ -1,4 +1,4 @@
-##### This project is not maintained anymore, Feel free to Contribute this source.
+##### This project is not maintained anymore, Feel free to Contribute.
 
 # UZ7
 Ultra ZPAQ + 7zip Compression
